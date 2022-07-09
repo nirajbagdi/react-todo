@@ -1,0 +1,35 @@
+.form {
+    margin-top: 3.2rem;
+    padding: 2rem 2.4rem;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    background-color: var(--bg-secondary);
+}
+
+.form input {
+    width: 100%;
+    border: 0;
+    outline: none;
+
+    font: inherit;
+    color: inherit;
+    line-height: 1.5;
+
+    background: transparent;
+    caret-color: var(--brightBlue);
+}
+
+.form input::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.form .circle {
+    width: 27px;
+    height: 24px;
+    border-radius: 50px;
+    box-shadow: 0 0 0 1px var(--color-accent);
+}

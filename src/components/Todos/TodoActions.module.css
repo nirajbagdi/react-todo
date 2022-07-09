@@ -1,0 +1,58 @@
+.todosActions {
+    position: relative;
+    padding: 1.6rem 2.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--color-text-secondary);
+    font-size: 1.4rem;
+}
+
+.actionsList {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.action {
+    font-weight: 600;
+    transition: color 0.3s;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.action:hover {
+    color: var(--color-text-primary);
+}
+
+.action.active {
+    color: var(--brightBlue);
+}
+
+.actionClear {
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.actionClear:hover {
+    color: var(--color-text-primary);
+}
+
+@media screen and (max-width: 520px) {
+    .actionsList {
+        position: absolute;
+        top: 6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        content: '';
+        background-color: var(--bg-secondary);
+        width: 100%;
+        padding: 1.6rem;
+        border-radius: 6px;
+        gap: 2.4rem;
+        justify-content: center;
+        box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.08);
+    }
+}
