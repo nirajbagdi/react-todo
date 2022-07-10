@@ -11,7 +11,8 @@ const initialState: ContextState = {
     toggleTodoComplete: todoId => {},
     changeFilterType: filterType => {},
     clearCompletedTodos: () => {},
-    toggleTheme: () => {}
+    toggleTheme: () => {},
+    updateTodos: todos => {}
 };
 
 export const TodosContext = createContext(initialState);

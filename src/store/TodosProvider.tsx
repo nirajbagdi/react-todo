@@ -55,6 +55,10 @@ export const TodosProvider: React.FC<Props> = ({ children }) => {
         setDarkMode(prevMode => !prevMode);
     };
 
+    const updateTodos = (updatedTodos: Todo[]) => {
+        setTodos(updatedTodos);
+    };
+
     const filteredTodos = filterTodos(filterType);
 
     const contextValue = {
@@ -67,7 +71,8 @@ export const TodosProvider: React.FC<Props> = ({ children }) => {
         toggleTodoComplete,
         clearCompletedTodos,
         changeFilterType,
-        toggleTheme
+        toggleTheme,
+        updateTodos
     };
 
     return <TodosContext.Provider value={contextValue}>{children}</TodosContext.Provider>;

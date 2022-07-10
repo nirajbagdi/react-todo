@@ -23,4 +23,5 @@ export type ContextState = {
     changeFilterType: (filterType: string) => void;
     clearCompletedTodos: () => void;
     toggleTheme: () => void;
+    updateTodos: (todos: Todo[]) => void;
 };
