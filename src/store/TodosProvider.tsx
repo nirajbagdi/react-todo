@@ -14,7 +14,17 @@ export const TodosProvider: React.FC<Props> = ({ children }) => {
     const [filterType, setFilterType] = useState('all');
 
     useEffect(() => {
-        document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
+        const htmlElement = document.documentElement;
+
+        htmlElement.classList.add('transition');
+        const themeTimer = setTimeout(
+            () => htmlElement.classList.remove('transition'),
+            1000
+        );
+
+        htmlElement.setAttribute('data-theme', darkMode ? 'dark' : '');
+
+        return () => clearTimeout(themeTimer);
     }, [darkMode]);
 
     const addTodo = (todoObj: Todo) => {

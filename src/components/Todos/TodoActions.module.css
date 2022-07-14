@@ -32,7 +32,7 @@
 }
 
 .actionClear {
-    transition: all 0.3s;
+    transition: color 0.3s;
     cursor: pointer;
 }
 
