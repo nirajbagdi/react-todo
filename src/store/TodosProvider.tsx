@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { TodosContext } from './todos-context';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { Todo } from '../models';
+import { Todo, TodoFilterTypes } from '../models';
 
 type Props = {
     children: React.ReactNode;
@@ -11,16 +11,13 @@ type Props = {
 export const TodosProvider: React.FC<Props> = ({ children }) => {
     const [todos, setTodos] = useLocalStorage<Todo[]>('todos', []);
     const [darkMode, setDarkMode] = useLocalStorage('darkMode', false);
-    const [filterType, setFilterType] = useState('all');
+    const [filterType, setFilterType] = useState(TodoFilterTypes.ALL);
 
     useEffect(() => {
         const htmlElement = document.documentElement;
 
         htmlElement.classList.add('transition');
-        const themeTimer = setTimeout(
-            () => htmlElement.classList.remove('transition'),
-            1000
-        );
+        const themeTimer = setTimeout(() => htmlElement.classList.remove('transition'), 1000);
 
         htmlElement.setAttribute('data-theme', darkMode ? 'dark' : '');
 
@@ -38,9 +35,7 @@ export const TodosProvider: React.FC<Props> = ({ children }) => {
     const toggleTodoComplete = (todoId: string) => {
         setTodos(prevTodos => {
             return prevTodos.map(todo => {
-                return todo.id === todoId
-                    ? { ...todo, isCompleted: !todo.isCompleted }
-                    : todo;
+                return todo.id === todoId ? { ...todo, isCompleted: !todo.isCompleted } : todo;
             });
         });
     };
@@ -49,13 +44,17 @@ export const TodosProvider: React.FC<Props> = ({ children }) => {
         setTodos(prevTodos => prevTodos.filter(t => !t.isCompleted));
     };
 
-    const changeFilterType = (filterType: string) => {
+    const changeFilterType = (filterType: TodoFilterTypes) => {
         setFilterType(filterType);
     };
 
-    const filterTodos = (filterType: string) => {
+    const filterTodos = (filterType: TodoFilterTypes) => {
         const todoIsCompleted =
-            filterType === 'completed' ? true : filterType === 'active' ? false : null;
+            filterType === TodoFilterTypes.COMPLETED
+                ? true
+                : filterType === TodoFilterTypes.ACTIVE
+                ? false
+                : null;
 
         if (todoIsCompleted === null) return todos;
         return todos.filter(t => t.isCompleted === todoIsCompleted);

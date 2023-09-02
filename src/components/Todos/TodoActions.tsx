@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { useTodos } from '../../store/todos-context';
 import styles from './TodoActions.module.css';
+import { TodoFilterTypes } from '../../models';
 
 const TodoActions: React.FC = () => {
     const [todoFilters, setTodoFilters] = useState([
@@ -18,7 +19,7 @@ const TodoActions: React.FC = () => {
 
     const handleListClick = (event: React.MouseEvent) => {
         const currentFilter = event.currentTarget.textContent!.toLowerCase();
-        todosCtx.changeFilterType(currentFilter);
+        todosCtx.changeFilterType(currentFilter as TodoFilterTypes);
 
         setTodoFilters(prevFilters =>
             prevFilters.map(f => ({ ...f, active: f.type === currentFilter }))

@@ -1,10 +1,10 @@
 import { createContext, useContext } from 'react';
-import { ContextState } from '../models';
+import { ContextState, TodoFilterTypes } from '../models';
 
 const initialState: ContextState = {
     todos: [],
     filteredTodos: [],
-    filterType: 'all',
+    filterType: TodoFilterTypes.ALL,
     darkMode: false,
     addTodo: todo => {},
     deleteTodo: todoId => {},
